@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<main>
+    <!-- Create Author's Profile Form -->
+    <section id="register">
+        <div class="form">
+            <h2>Create Author's Profile</h2>
+
+            <form class="register-form" method="post" action="">
+                {% csrf_token %}
+
+                <div>
+                    <label for="{{ form.first_name.id_for_label }}">{{ form.first_name.label }}</label>
+                    {{ form.first_name }}
+                    {% if form.first_name.errors %}
+                        <div class="error">{{ form.first_name.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div>
+                    <label for="{{ form.last_name.id_for_label }}">{{ form.last_name.label }}</label>
+                    {{ form.last_name }}
+                    {% if form.last_name.errors %}
+                        <div class="error">{{ form.last_name.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div>
+                    <label for="{{ form.passcode.id_for_label }}">{{ form.passcode.label }}</label>
+                    <div class="helptext">{{ form.passcode.help_text }}</div>
+                    {{ form.passcode }}
+                    {% if form.passcode.errors %}
+                        <div class="error">{{ form.passcode.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div>
+                    <label for="{{ form.pets_number.id_for_label }}">{{ form.pets_number.label }}</label>
+                    {{ form.pets_number }}
+                    {% if form.pets_number.errors %}
+                        <div class="error">{{ form.pets_number.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <!-- form button -->
+                <button type="submit">Create</button>
+            </form>
+        </div>
+    </section>
+</main>
+
+{% endblock %}

@@ -1,0 +1,16 @@
+a.cancel-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 4px;
+    background-color: #ccc; /* Background color */
+    color: black;
+    margin-left: 10px;
+    transition: background-color 0.3s ease;
+}
+
+a.cancel-btn:hover {
+    background-color: #aaa; /* Hover background color */
+}

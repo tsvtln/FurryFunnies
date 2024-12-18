@@ -1,0 +1,88 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="{% static 'styles/styles.css' %}"/>
+    <title>FurryFunnies</title>
+</head>
+<body>
+<div id="wrapper">
+    <header>
+        <!-- Logo image: a link to index/home page -->
+        <a id="logo" href="{% url 'index' %}">
+            <img id="logo-img" src="{% static 'images/logo.png' %}" alt="logo"/>
+        </a>
+
+        <nav>
+            {% if has_author_profile and author %}
+                <!-- If there is an author's profile -->
+                <div class="user">
+                    <a href="{% url 'dashboard' %}">Dashboard</a>
+                    <a href="{% url 'post-create' %}">New Post</a>
+                    <a href="{% url 'detail-author' author.pk %}">Author's Profile</a>
+                </div>
+            {% else %}
+                <!-- If author's profile has NOT been created -->
+                <div class="guest">
+                    <a href="{% url 'create-author' %}">Create Author's Profile</a>
+                </div>
+            {% endif %}
+        </nav>
+    </header>
+
+    <main>
+        <!-- Author's Profile Details Section -->
+        <section id="details">
+            <div id="details-wrapper">
+                <h2>Author's Profile Details</h2>
+
+                <!-- Profile Picture: Display user's image if provided, otherwise show default -->
+                <img
+                        id="details-img"
+                        src="{{ author.image_url|default:'/static/images/default.png' }}"
+                        alt="profile img"
+                />
+
+                <!-- Author's full name -->
+                <p id="details-title">{{ author.first_name }} {{ author.last_name }}</p>
+
+                <!-- Number of published posts -->
+                <p id="nutrition">Published Posts: {{ posts_count }}</p>
+
+                <div id="info-wrapper">
+                    <div id="details-description">
+                        <!-- Number of pets -->
+                        <p>Pets Number: {{ author.pets_number }}</p>
+
+                        <!-- Additional info, if provided -->
+                        {% if author.info %}
+                            <p>{{ author.info }}</p>
+                        {% endif %}
+
+                        <!-- Latest activity -->
+                        <p>-------------------------------</p>
+                        <p>Last Updated Post: <strong>{{ last_post_title }}</strong></p>
+                    </div>
+
+                    <!-- Edit and Delete buttons -->
+                        <div id="action-buttons">
+                            <a href="{% url 'edit-author' author.pk %}" id="edit-btn">Edit</a>
+                            <a href="{% url 'delete-author' author.pk %}" id="delete-btn">Delete</a>
+                        </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+
+<!-- footer -->
+<footer>
+    <p>&copy; 2024 FurryFunnies by SoftUni Team. All rights reserved.</p>
+</footer>
+</body>
+</html>

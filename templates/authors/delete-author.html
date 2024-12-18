@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <main>
+        <section id="delete">
+            <div class="form">
+                <h1>You are about to delete your Author's Profile</h1>
+                <p>This action will delete all of your published posts as well. Are you sure you want to proceed?</p>
+
+                <!-- Delete Author's Profile Form -->
+                <form id="delete" class="register-form" method="post">
+                    {% csrf_token %}
+                    <!-- Confirm Button -->
+                    <button type="submit">Confirm</button>
+                    <a href="{% url 'detail-author' author.id %}" class="cancel-btn">Cancel</a>
+                </form>
+            </div>
+            <!-- End Delete Form -->
+        </section>
+    </main>
+
+{% endblock %}

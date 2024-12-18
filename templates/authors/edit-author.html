@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <main>
+        <!-- Edit Author's Profile Form -->
+        <section id="edit-author">
+            <div class="form">
+                <h2>Edit Author's Profile</h2>
+
+                <form class="edit-form" method="post" action="">
+                    {% csrf_token %}
+
+                    <!-- Display form fields with labels and error messages -->
+                    <div>
+                        <label for="id_first_name">First Name:</label>
+                        {{ form.first_name }}
+                    </div>
+
+                    <div>
+                        <label for="id_last_name">Last Name:</label>
+                        {{ form.last_name }}
+                    </div>
+
+                    <div>
+                        <label for="id_pets_number">Pets Number:</label>
+                        {{ form.pets_number }}
+                    </div>
+
+                    <div>
+                        <label for="id_info">Info:</label>
+                        {{ form.info }}
+                    </div>
+
+                    <div>
+                        <label for="id_image_url">Profile Image URL:</label>
+                        {{ form.image_url }}
+                    </div>
+
+                    <!-- Submit button -->
+                    <button type="submit">Edit</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+{% endblock %}
